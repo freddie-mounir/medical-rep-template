@@ -1,0 +1,1740 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gold & Jewellery Odoo ERP Demo</title>
+    <meta
+      name="description"
+      content="Interactive live demo for a premium jewellery and gold trading Odoo ERP implementation."
+    />
+    <style>
+      :root {
+        --bg: #071a17;
+        --bg-2: #0d251f;
+        --panel: rgba(10, 22, 20, 0.9);
+        --panel-strong: #102821;
+        --panel-soft: #17372f;
+        --border: rgba(42, 210, 165, 0.2);
+        --brand-1: #25d7a1;
+        --brand-2: #1ebd8d;
+        --brand-3: #1aa16d;
+        --brand-4: #7df4c2;
+        --text: #edfdf8;
+        --muted: #c9e7dc;
+        --muted-2: #9cc8b8;
+        --success: #43dd9d;
+        --danger: #ff8d7a;
+        --shadow: 0 18px 50px rgba(3, 18, 15, 0.38);
+        --radius: 22px;
+      }
+
+      body[data-theme="light"] {
+        --bg: #eefaf4;
+        --bg-2: #f8fffb;
+        --panel: rgba(255, 255, 255, 0.9);
+        --panel-strong: #f7fcf9;
+        --panel-soft: #eefaf4;
+        --border: rgba(26, 146, 113, 0.18);
+        --brand-1: #2ec99b;
+        --brand-2: #34b68d;
+        --brand-3: #1f9f6d;
+        --brand-4: #28b57c;
+        --text: #163b32;
+        --muted: #4f6d62;
+        --muted-2: #6a847b;
+        --success: #0fab64;
+        --danger: #d56d5d;
+        --shadow: 0 18px 42px rgba(26, 146, 113, 0.12);
+      }
+
+      * { box-sizing: border-box; }
+
+      html { scroll-behavior: smooth; }
+
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(37, 215, 161, 0.16), transparent 28%),
+          radial-gradient(circle at right top, rgba(26, 161, 109, 0.12), transparent 20%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+        color: var(--text);
+        transition: background 0.25s ease, color 0.25s ease;
+      }
+
+      body[data-theme="light"] {
+        background:
+          radial-gradient(circle at top left, rgba(40, 181, 124, 0.16), transparent 28%),
+          radial-gradient(circle at right top, rgba(47, 168, 126, 0.12), transparent 20%),
+          linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
+      }
+
+      img { max-width: 100%; display: block; }
+
+      a { color: inherit; text-decoration: none; }
+
+      .container {
+        width: min(1200px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 50;
+        backdrop-filter: blur(12px);
+        background: rgba(7, 11, 18, 0.7);
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+      }
+
+      body[data-theme="light"] header {
+        background: rgba(255, 255, 255, 0.76);
+        border-bottom: 1px solid rgba(17, 94, 140, 0.08);
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 72px;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+      }
+
+      .logo-wrap {
+        display: flex;
+        align-items: center;
+        gap: 0.85rem;
+      }
+
+      .brand-mark {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        padding: 0.3rem;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 8px 18px rgba(28, 174, 216, 0.2);
+      }
+
+      body[data-theme="light"] .brand-mark,
+      body[data-theme="light"] .odoo-badge {
+        background: rgba(26, 146, 113, 0.05);
+        border: 1px solid rgba(17, 94, 140, 0.08);
+        box-shadow: 0 8px 18px rgba(25, 146, 113, 0.08);
+      }
+
+      .brand-mark img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 10px;
+      }
+
+      .odoo-badge {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 54px;
+        height: 54px;
+        padding: 0.3rem;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.08);
+        box-shadow: 0 8px 18px rgba(28, 174, 216, 0.2);
+        overflow: hidden;
+      }
+
+      .odoo-badge img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        display: block;
+        border-radius: 10px;
+      }
+
+      .brand-text {
+        font-weight: 700;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+        color: var(--text);
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 1.4rem;
+        color: var(--muted);
+        font-size: 0.95rem;
+      }
+
+      .nav-links a:hover { color: var(--brand-4); }
+
+      .nav-cta {
+        padding: 0.9rem 1.3rem;
+        border-radius: 999px;
+        border: 1px solid rgba(26, 146, 113, 0.42);
+        color: #06271d;
+        background: linear-gradient(135deg, #31d596, var(--brand-2), var(--brand-3));
+        font-weight: 700;
+        box-shadow: 0 12px 28px rgba(28, 181, 124, 0.22);
+        transition: all 0.2s ease;
+      }
+
+      .nav-cta:hover {
+        background: linear-gradient(135deg, #f4fff8, #dffef0, #c2f7dd);
+        color: #0d3f2f;
+      }
+
+      .theme-toggle {
+        appearance: none;
+        border: 1px solid var(--border);
+        background: rgba(255,255,255,0.04);
+        color: var(--text);
+        border-radius: 999px;
+        width: 42px;
+        height: 42px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.1rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        padding: 0;
+      }
+
+      .theme-toggle:hover {
+        transform: translateY(-1px);
+        border-color: rgba(26, 146, 113, 0.5);
+        background: linear-gradient(135deg, #f4fff8, #dffef0, #c2f7dd);
+        color: #0d3f2f;
+      }
+
+      .hero {
+        padding: 72px 0 50px;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 30px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.55rem;
+        padding: 0.52rem 0.9rem;
+        border: 1px solid var(--border);
+        border-radius: 999px;
+        color: var(--brand-4);
+        background: rgba(255,255,255,0.02);
+        font-size: 0.76rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow::before {
+        content: "";
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: linear-gradient(180deg, var(--brand-4), var(--brand-2));
+        box-shadow: 0 0 18px rgba(37, 215, 161, 0.8);
+      }
+
+      h1 {
+        margin: 20px 0 18px;
+        font-size: clamp(2.7rem, 5vw, 5rem);
+        line-height: 0.96;
+        letter-spacing: -0.05em;
+      }
+
+      .highlight {
+        color: var(--brand-4);
+        text-shadow: 0 0 26px rgba(31, 192, 214, 0.45);
+      }
+
+      .lead {
+        max-width: 680px;
+        color: var(--muted);
+        font-size: 1.12rem;
+        line-height: 1.8;
+      }
+
+      .cta-row {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.55rem;
+        border-radius: 999px;
+        padding: 1rem 1.5rem;
+        font-weight: 700;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+        border: 1px solid rgba(26, 146, 113, 0.35);
+      }
+
+      .btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 12px 26px rgba(28, 181, 124, 0.22);
+      }
+
+      .btn.primary {
+        background: linear-gradient(135deg, #31d596, var(--brand-2), var(--brand-3));
+        color: #06271d;
+        box-shadow: 0 16px 30px rgba(28, 181, 124, 0.24);
+      }
+
+      .btn.primary:hover {
+        background: linear-gradient(135deg, #f4fff8, #dffef0, #c2f7dd);
+        color: #0d3f2f;
+      }
+
+      .btn.secondary {
+        border: 1px solid rgba(26, 146, 113, 0.35);
+        background: rgba(255,255,255,0.02);
+        color: var(--text);
+      }
+
+      .btn.secondary:hover {
+        background: linear-gradient(135deg, #e9fff5, #d9f9ea, #c2f7dd);
+        color: #0d3f2f;
+        border-color: rgba(26, 146, 113, 0.6);
+      }
+
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(120px, 1fr));
+        gap: 1rem;
+        margin-top: 2.2rem;
+      }
+
+      .stat-box {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 1rem 1rem 0.9rem;
+      }
+
+      .stat-box strong {
+        display: block;
+        font-size: clamp(1.3rem, 2vw, 2rem);
+        color: var(--brand-4);
+      }
+
+      .stat-box span {
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .panel {
+        position: relative;
+        background: linear-gradient(180deg, rgba(18,27,38,0.92), rgba(16,23,33,0.96));
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      body[data-theme="light"] .panel {
+        background: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(240,248,255,0.96));
+      }
+
+      .hero-visual {
+        padding: 1.1rem;
+      }
+
+      .dashboard {
+        position: relative;
+        padding: 1.1rem;
+      }
+
+      .dashboard-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 1.3rem;
+        color: var(--muted);
+        font-size: 0.85rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .status-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        padding: 0.4rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(41, 193, 122, 0.08);
+        color: var(--success);
+        border: 1px solid rgba(41, 193, 122, 0.25);
+      }
+
+      .status-pill::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--success);
+      }
+
+      .kpis {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.9rem;
+        margin-bottom: 1.2rem;
+      }
+
+      .kpi-card {
+        padding: 1rem 1rem 0.8rem;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.05);
+      }
+
+      .kpi-card small {
+        color: var(--muted-2);
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+      }
+
+      .kpi-card strong {
+        display: block;
+        margin-top: 0.5rem;
+        font-size: 1.6rem;
+      }
+
+      .chart {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        align-items: end;
+        gap: 0.7rem;
+        height: 160px;
+        padding-top: 0.8rem;
+      }
+
+      .bar {
+        border-radius: 12px 12px 0 0;
+        background: linear-gradient(180deg, var(--brand-4), var(--brand-2), var(--brand-3));
+        opacity: 0.95;
+        min-height: 26%;
+        box-shadow: 0 10px 20px rgba(28, 174, 216, 0.25);
+      }
+
+      .bar:nth-child(odd) {
+        background: linear-gradient(180deg, #7ae7ff, var(--brand-2));
+      }
+
+      .grid-section {
+        padding: 34px 0 12px;
+      }
+
+      .market-section {
+        padding: 18px 0 12px;
+      }
+
+      .market-shell {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 1rem;
+        align-items: stretch;
+      }
+
+      .market-card {
+        display: flex;
+        flex-direction: column;
+        min-height: 660px;
+        padding: 1.2rem;
+      }
+
+      .insight-card {
+        padding: 1.2rem;
+      }
+
+      .market-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .market-head h3 {
+        margin: 0.45rem 0 0;
+        font-size: clamp(1.5rem, 2vw, 2.3rem);
+        letter-spacing: -0.04em;
+      }
+
+      .market-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        padding: 0.45rem 0.7rem;
+        border-radius: 999px;
+        background: rgba(63, 220, 151, 0.08);
+        border: 1px solid rgba(63, 220, 151, 0.25);
+        color: var(--success);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .market-status::before {
+        content: "";
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: var(--success);
+        box-shadow: 0 0 10px rgba(67, 221, 157, 0.9);
+      }
+
+      .quote-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.8rem;
+        margin-bottom: 1rem;
+      }
+
+      .quote-card {
+        padding: 0.9rem 0.8rem;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .quote-card span {
+        display: block;
+        color: var(--muted-2);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .quote-card strong {
+        display: block;
+        margin: 0.55rem 0 0.2rem;
+        font-size: clamp(1.4rem, 2vw, 2.1rem);
+        color: var(--brand-4);
+      }
+
+      .quote-card small {
+        color: var(--muted);
+      }
+
+      .market-widget {
+        flex: 1;
+        min-height: 520px;
+        height: 520px;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(255,255,255,0.06);
+        background: rgba(255,255,255,0.015);
+      }
+
+      .market-widget .tradingview-widget-container,
+      .market-widget .tradingview-widget-container__widget {
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .insight-list {
+        display: grid;
+        gap: 0.75rem;
+      }
+
+      .insight-item {
+        display: grid;
+        grid-template-columns: 44px 1fr;
+        gap: 0.75rem;
+        align-items: start;
+        padding: 0.8rem 0.8rem;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.05);
+        background: rgba(255,255,255,0.02);
+      }
+
+      .insight-icon {
+        width: 44px;
+        height: 44px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+        background: rgba(36,208,194,0.12);
+        color: var(--brand-4);
+        font-size: 1.2rem;
+      }
+
+      .insight-item strong {
+        display: block;
+        margin-bottom: 0.2rem;
+      }
+
+      .insight-item span {
+        color: var(--muted);
+        line-height: 1.6;
+      }
+
+      .section-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: end;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+      }
+
+      .section-head h2 {
+        margin: 0;
+        font-size: clamp(2rem, 3vw, 3.1rem);
+        letter-spacing: -0.04em;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 580px;
+        line-height: 1.8;
+      }
+
+      .module-shell {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 16px;
+        margin-top: 0.9rem;
+      }
+
+      .module-tabs {
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .tab-btn {
+        width: 100%;
+        text-align: left;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.05);
+        color: var(--text);
+        border-radius: 16px;
+        padding: 1rem 1rem;
+        transition: all 0.2s ease;
+        cursor: pointer;
+      }
+
+      .tab-btn:hover,
+      .tab-btn.active {
+        border-color: rgba(36, 208, 194, 0.42);
+        background: linear-gradient(135deg, rgba(36,208,194,0.12), rgba(14,127,220,0.06));
+        transform: translateX(3px);
+      }
+
+      .tab-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 0.4rem;
+      }
+
+      .tab-icon {
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        display: grid;
+        place-items: center;
+        background: rgba(36,208,194,0.12);
+        color: var(--brand-4);
+        font-size: 1.2rem;
+      }
+
+      .tab-label {
+        display: block;
+        font-weight: 700;
+      }
+
+      .tab-sub {
+        display: block;
+        color: var(--muted);
+        font-size: 0.82rem;
+        line-height: 1.6;
+      }
+
+      .module-detail {
+        min-height: 420px;
+        padding: 0.8rem;
+      }
+
+      .detail-banner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.8rem;
+        padding: 0.9rem 1rem;
+        border-radius: 16px;
+        background: linear-gradient(135deg, rgba(36,208,194,0.14), rgba(14,127,220,0.06));
+        border: 1px solid rgba(36,208,194,0.22);
+      }
+
+      .detail-banner h3 {
+        margin: 0 0 0.25rem;
+        font-size: clamp(1.5rem, 2vw, 2.3rem);
+      }
+
+      .detail-banner p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .mini-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0.8rem;
+        border-radius: 999px;
+        background: rgba(15, 20, 28, 0.92);
+        border: 1px solid rgba(36,208,194,0.2);
+        color: var(--brand-4);
+        font-size: 0.8rem;
+        white-space: nowrap;
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: 1.25fr 0.75fr;
+        gap: 0.9rem;
+        margin-top: 0.8rem;
+      }
+
+      .detail-grid.crm-layout {
+        display: block;
+      }
+
+      .check-list, .metric-stack {
+        display: grid;
+        gap: 0.6rem;
+      }
+
+      .metric-strip {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0.7rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .check-item {
+        display: flex;
+        gap: 0.7rem;
+        align-items: flex-start;
+        line-height: 1.5;
+        color: var(--muted);
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.04);
+        border-radius: 12px;
+        padding: 0.7rem 0.8rem;
+      }
+
+      .check-item::before {
+        content: "✓";
+        color: var(--brand-4);
+        font-weight: 800;
+        margin-top: 0.05rem;
+      }
+
+      .metric-stack .metric-box {
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.04);
+        border-radius: 14px;
+        padding: 1rem;
+      }
+
+      .metric-box strong {
+        display: block;
+        color: var(--brand-4);
+        font-size: 1.8rem;
+        margin-bottom: 0.3rem;
+      }
+
+      .metric-box span {
+        color: var(--muted);
+      }
+
+      .pipeline-grid {
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .stage-row {
+        display: grid;
+        grid-template-columns: repeat(5, minmax(0, 1fr));
+        gap: 0.55rem;
+      }
+
+      .stage-card {
+        display: grid;
+        gap: 0.45rem;
+        padding: 0.7rem 0.7rem 0.6rem;
+        border-radius: 14px;
+        background: rgba(255,255,255,0.02);
+        border: 1px solid rgba(255,255,255,0.04);
+        min-height: 188px;
+      }
+
+      .stage-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.4rem;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+        padding-bottom: 0.35rem;
+      }
+
+      .stage-name {
+        color: var(--muted-2);
+        font-size: 0.72rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .stage-value {
+        color: var(--brand-4);
+        font-size: 1.5rem;
+        font-weight: 700;
+      }
+
+      .stage-amount {
+        color: var(--muted);
+        font-size: 0.78rem;
+      }
+
+      .deal-list {
+        display: grid;
+        gap: 0.35rem;
+        margin-top: 0.05rem;
+      }
+
+      .deal-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0.35rem;
+        color: var(--muted);
+        font-size: 0.73rem;
+        padding: 0.28rem 0.35rem;
+        border-radius: 8px;
+        background: rgba(255,255,255,0.015);
+      }
+
+      .deal-item strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+
+      .deal-item span:last-child {
+        color: var(--brand-4);
+      }
+
+      .stage-card.new { border-color: rgba(36,208,194,0.24); }
+      .stage-card.qualified { border-color: rgba(14,127,220,0.24); }
+      .stage-card.proposal { border-color: rgba(127, 201, 255, 0.24); }
+      .stage-card.negotiation { border-color: rgba(40, 196, 255, 0.24); }
+      .stage-card.won { border-color: rgba(61, 220, 151, 0.24); }
+
+      .operations {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1.1rem;
+        margin-top: 1.5rem;
+      }
+
+      .ops-card {
+        padding: 1.2rem;
+        min-height: 220px;
+      }
+
+      .ops-card .count {
+        display: inline-block;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: rgba(36,208,194,0.12);
+        color: var(--brand-4);
+        display: grid;
+        place-items: center;
+        font-weight: 800;
+        margin-bottom: 1rem;
+      }
+
+      .ops-card h3 {
+        margin: 0 0 0.7rem;
+        font-size: 1.2rem;
+      }
+
+      .ops-card p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.8;
+      }
+
+      .showcase {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 1.4rem;
+        margin-top: 1.5rem;
+      }
+
+      .crm-box {
+        padding: 1.2rem;
+      }
+
+      .crm-box h3 {
+        margin: 0 0 1rem;
+        font-size: 1.25rem;
+      }
+
+      .lead-table {
+        width: 100%;
+        border-collapse: collapse;
+        color: var(--text);
+        font-size: 0.93rem;
+      }
+
+      .lead-table th,
+      .lead-table td {
+        text-align: left;
+        padding: 0.8rem 0.7rem;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .lead-table th {
+        color: var(--muted-2);
+        font-size: 0.76rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        font-weight: 700;
+      }
+
+      .lead-table tbody tr:hover {
+        background: rgba(255,255,255,0.02);
+      }
+
+      .badge {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.35rem 0.7rem;
+        border-radius: 999px;
+        font-size: 0.72rem;
+        font-weight: 700;
+      }
+
+      .badge.new { background: rgba(36,208,194,0.12); color: var(--brand-4); }
+      .badge.hot { background: rgba(14,127,220,0.12); color: #7fc9ff; }
+      .badge.followup { background: rgba(255,255,255,0.06); color: var(--muted); }
+
+      .report-box, .workflow-box {
+        padding: 1.2rem;
+      }
+
+      .report-box h3, .workflow-box h3 {
+        margin: 0 0 1rem;
+        font-size: 1.25rem;
+      }
+
+      .bars-rows {
+        display: grid;
+        gap: 0.7rem;
+      }
+
+      .bars-rows .row {
+        display: grid;
+        grid-template-columns: 110px 1fr 60px;
+        align-items: center;
+        gap: 0.8rem;
+        color: var(--muted);
+      }
+
+      .track {
+        height: 12px;
+        border-radius: 999px;
+        background: rgba(255,255,255,0.05);
+        overflow: hidden;
+      }
+
+      .fill {
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, var(--brand-4), var(--brand-2), var(--brand-3));
+      }
+
+      .workflow-list {
+        display: grid;
+        gap: 0.8rem;
+      }
+
+      .workflow-item {
+        display: grid;
+        grid-template-columns: 36px 1fr;
+        gap: 0.8rem;
+        align-items: start;
+        color: var(--muted);
+      }
+
+      .step {
+        width: 36px;
+        height: 36px;
+        display: grid;
+        place-items: center;
+        border-radius: 10px;
+        background: rgba(36,208,194,0.12);
+        color: var(--brand-4);
+        font-weight: 800;
+      }
+
+      .workflow-item strong {
+        display: block;
+        color: var(--text);
+        margin-bottom: 0.2rem;
+      }
+
+      .cta-section {
+        padding: 60px 0 70px;
+      }
+
+      .cta-box {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.5rem;
+        padding: 2rem 2rem;
+        border-radius: 30px;
+        background: linear-gradient(135deg, rgba(36,208,194,0.10), rgba(14,127,220,0.06), rgba(255,255,255,0.02));
+        border: 1px solid rgba(36,208,194,0.2);
+      }
+
+      .cta-box h3 {
+        margin: 0 0 0.35rem;
+        font-size: clamp(2rem, 3vw, 3rem);
+        letter-spacing: -0.04em;
+      }
+
+      .cta-box p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.7;
+      }
+
+      footer {
+        padding: 0 0 30px;
+        color: var(--muted);
+      }
+
+      .footer-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid rgba(255,255,255,0.06);
+        padding-top: 1.2rem;
+      }
+
+      @media (max-width: 980px) {
+        .hero-grid,
+        .module-shell,
+        .detail-grid,
+        .showcase,
+        .cta-box {
+          grid-template-columns: 1fr;
+          display: grid;
+        }
+
+        .operations {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .nav-links {
+          display: none;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .stats,
+        .kpis,
+        .operations {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .cta-row {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .btn {
+          width: 100%;
+        }
+
+        .section-head {
+          display: block;
+        }
+
+        .footer-line {
+          flex-direction: column;
+          gap: 0.7rem;
+          align-items: flex-start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav">
+        <div class="brand" aria-label="GoCloud and Odoo ERP brand">
+          <div class="logo-wrap">
+            <a class="brand-mark" href="https://www.gocloudeg.com/index.html" target="_blank" rel="noreferrer" aria-label="GoCloud website">
+              <img src="gocloud logo.jpeg" alt="GoCloud logo" />
+            </a>
+            <a class="odoo-badge" href="https://www.odoo.com" target="_blank" rel="noreferrer" aria-label="Odoo website">
+              <img src="image-1789384658399.png" alt="Odoo logo" />
+            </a>
+          </div>
+          <div class="brand-text">Gold ERP</div>
+        </div>
+
+        <nav class="nav-links" aria-label="Main navigation">
+          <a href="#overview">Overview</a>
+          <a href="#market">Market</a>
+          <a href="#modules">Modules</a>
+          <a href="#operations">Operations</a>
+          <a href="#contact">Contact</a>
+        </nav>
+
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle light and dark mode">☀️</button>
+        <a class="nav-cta" href="#contact">Book Demo</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero" id="overview">
+        <div class="container hero-grid">
+          <div>
+            <div class="eyebrow">Jewellery Odoo ERP</div>
+            <h1>
+              The <span class="highlight">gold</span> standard for<br />
+              jewelry retail & investment trading operations
+            </h1>
+            <p class="lead">
+              A live operational system for managing sales, purchases, inventory,
+              customer credit, supplier settlements, gold pricing, and daily financial
+              movements in a premium jewelry business.
+            </p>
+
+            <div class="cta-row">
+              <a class="btn primary" href="#modules">Explore Modules</a>
+              <a class="btn secondary" href="#contact">Request Free Demo</a>
+            </div>
+
+            <div class="stats" aria-label="business metrics">
+              <div class="stat-box">
+                <strong>12k+</strong>
+                <span>Daily Transactions</span>
+              </div>
+              <div class="stat-box">
+                <strong>99.9%</strong>
+                <span>Operational Uptime</span>
+              </div>
+              <div class="stat-box">
+                <strong>3x</strong>
+                <span>Faster Closing</span>
+              </div>
+              <div class="stat-box">
+                <strong>24/7</strong>
+                <span>Cash & Inventory Control</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="panel hero-visual" aria-label="ERP dashboard preview">
+            <div class="dashboard">
+              <img src="dashboard.png" alt="Gold ERP dashboard preview" style="width:100%; border-radius: 18px; display:block;" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="market-section" id="market">
+        <div class="container">
+          <div class="section-head">
+            <h2>Live gold market pulse</h2>
+            <p>
+              Monitor real-time market movement from TradingView to align pricing, inventory valuation, and buying decisions with current gold conditions.
+            </p>
+          </div>
+
+          <div class="market-shell">
+            <div class="panel market-card">
+              <div class="market-head">
+                <div>
+                  <span class="eyebrow">Precious metals</span>
+                  <h3>Gold watch</h3>
+                </div>
+                <div class="market-status">Live</div>
+              </div>
+
+              <div class="quote-grid">
+                <div class="quote-card">
+                  <span>Spot Gold</span>
+                  <strong id="spotGold">$2,346.80</strong>
+                  <small>USD / oz</small>
+                </div>
+                <div class="quote-card">
+                  <span>24h Change</span>
+                  <strong id="goldChange">+0.82%</strong>
+                  <small>Daily movement</small>
+                </div>
+                <div class="quote-card">
+                  <span>Session High</span>
+                  <strong id="goldHigh">$2,352.10</strong>
+                  <small>Current range</small>
+                </div>
+              </div>
+
+              <div class="market-widget" id="tradingview-widget" aria-label="TradingView gold market chart"></div>
+            </div>
+
+            <aside class="panel insight-card">
+              <div class="section-head" style="margin-bottom: 1rem;">
+                <h2 style="font-size: 1.5rem;">Why it matters</h2>
+              </div>
+
+              <div class="insight-list">
+                <div class="insight-item">
+                  <div class="insight-icon">◎</div>
+                  <div>
+                    <strong>Dynamic pricing</strong>
+                    <span>Update sell and buy rates quickly as market movement changes in real time.</span>
+                  </div>
+                </div>
+
+                <div class="insight-item">
+                  <div class="insight-icon">▣</div>
+                  <div>
+                    <strong>Margin control</strong>
+                    <span>Track movements before making purchase or sales decisions across branches.</span>
+                  </div>
+                </div>
+
+                <div class="insight-item">
+                  <div class="insight-icon">◈</div>
+                  <div>
+                    <strong>Operational alerting</strong>
+                    <span>Use market signals to trigger review on high volatility periods and inventory adjustments.</span>
+                  </div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-section" id="modules">
+        <div class="container">
+          <div class="section-head">
+            <h2>Core ERP modules</h2>
+            <p>
+              Built around the daily realities of jewelry stores, gold traders, and multi-branch retail operations.
+            </p>
+          </div>
+
+          <div class="module-shell">
+            <div class="module-tabs" role="tablist" aria-label="ERP module tabs">
+              <button class="tab-btn active" type="button" data-module="crm">
+                <span class="tab-top"><span class="tab-icon">✦</span><span class="tab-label">CRM</span></span>
+                <span class="tab-sub">Lead capture, sales pipeline, opportunities, and follow-up workflows.</span>
+              </button>
+
+              <button class="tab-btn" type="button" data-module="sales">
+                <span class="tab-top"><span class="tab-icon">◉</span><span class="tab-label">Sales</span></span>
+                <span class="tab-sub">Invoices, payments, daily journal entries, and point-of-sale flow.</span>
+              </button>
+
+              <button class="tab-btn" type="button" data-module="purchases">
+                <span class="tab-top"><span class="tab-icon">◫</span><span class="tab-label">Purchases</span></span>
+                <span class="tab-sub">Purchase bills, supplier balances, cost tracking, and pricing controls.</span>
+              </button>
+
+              <button class="tab-btn" type="button" data-module="customers">
+                <span class="tab-top"><span class="tab-icon">◎</span><span class="tab-label">Customers</span></span>
+                <span class="tab-sub">Customer registry, receivables, exchange history, and account analysis.</span>
+              </button>
+
+              <button class="tab-btn" type="button" data-module="suppliers">
+                <span class="tab-top"><span class="tab-icon">▣</span><span class="tab-label">Suppliers</span></span>
+                <span class="tab-sub">Supplier data, purchase activity, payable balances, and vendor reports.</span>
+              </button>
+
+              <button class="tab-btn" type="button" data-module="inventory">
+                <span class="tab-top"><span class="tab-icon">▤</span><span class="tab-label">Inventory</span></span>
+                <span class="tab-sub">Item master, stock movement, product categories, and gold item management.</span>
+              </button>
+            </div>
+
+            <div class="panel module-detail" id="module-detail" aria-live="polite">
+              <div class="detail-banner">
+                <div>
+                  <h3 id="detail-title">CRM Pipeline</h3>
+                  <p id="detail-subtitle">Track leads from inquiry to negotiation and close.</p>
+                </div>
+                <div class="mini-pill" id="detail-pill">Opportunities</div>
+              </div>
+
+              <div class="detail-grid">
+                <div class="check-list" id="feature-list"></div>
+                <div class="metric-stack" id="metric-list"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="grid-section" id="operations">
+        <div class="container">
+          <div class="section-head">
+            <h2>Daily operating flow</h2>
+            <p>
+              The system supports the full lifecycle of a jewelry store, from stock intake and sales to payment reconciliation and financial reporting.
+            </p>
+          </div>
+
+          <div class="operations">
+            <article class="panel ops-card">
+              <div class="count">01</div>
+              <h3>Sales & Billing</h3>
+              <p>Capture daily sales instantly, issue invoices, track partial payments, and automate accounting entries.</p>
+            </article>
+
+            <article class="panel ops-card">
+              <div class="count">02</div>
+              <h3>Purchases</h3>
+              <p>Manage supplier invoices, track cost rules, monitor purchase movements, and reconcile balances by vendor.</p>
+            </article>
+
+            <article class="panel ops-card">
+              <div class="count">03</div>
+              <h3>Customers</h3>
+              <p>Record customer profiles, manage debts, monitor exposure, and produce detailed transaction reports.</p>
+            </article>
+
+            <article class="panel ops-card">
+              <div class="count">04</div>
+              <h3>Gold Pricing</h3>
+              <p>Use live gold rates to calculate selling and buying price logic, margins, and valuation checks.</p>
+            </article>
+          </div>
+
+          <div class="showcase">
+            <div class="panel crm-box">
+              <h3>CRM leads & opportunities</h3>
+              <table class="lead-table" aria-label="CRM leads and opportunities">
+                <thead>
+                  <tr>
+                    <th>Lead</th>
+                    <th>Product</th>
+                    <th>Value</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Sarah Al-Mansoori</td>
+                    <td>Diamond necklace</td>
+                    <td>EGP 180,000</td>
+                    <td><span class="badge hot">Hot</span></td>
+                  </tr>
+                  <tr>
+                    <td>Hassan & Sons</td>
+                    <td>Gold bars / investment</td>
+                    <td>EGP 520,000</td>
+                    <td><span class="badge new">New</span></td>
+                  </tr>
+                  <tr>
+                    <td>Leila Fareed</td>
+                    <td>Wedding set</td>
+                    <td>EGP 95,000</td>
+                    <td><span class="badge followup">Follow-up</span></td>
+                  </tr>
+                  <tr>
+                    <td>Royal Gems Group</td>
+                    <td>Bulk jewelry order</td>
+                    <td>EGP 860,000</td>
+                    <td><span class="badge hot">Hot</span></td>
+                  </tr>
+                  <tr>
+                    <td>Omar Salim</td>
+                    <td>Gold chain & watch</td>
+                    <td>EGP 72,500</td>
+                    <td><span class="badge new">New</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="panel workflow-box">
+              <h3>Implementation workflow</h3>
+              <div class="workflow-list">
+                <div class="workflow-item">
+                  <div class="step">1</div>
+                  <div>
+                    <strong>Business analysis</strong>
+                    <span>Study the business model, store flow, pricing strategy, and operational requirements.</span>
+                  </div>
+                </div>
+                <div class="workflow-item">
+                  <div class="step">2</div>
+                  <div>
+                    <strong>Process mapping</strong>
+                    <span>Map daily processes across sales, purchases, inventory, finance, and customer service.</span>
+                  </div>
+                </div>
+                <div class="workflow-item">
+                  <div class="step">3</div>
+                  <div>
+                    <strong>Configuration</strong>
+                    <span>Adapt Odoo modules for gold pricing, VAT, branches, cashiers, and business rules.</span>
+                  </div>
+                </div>
+                <div class="workflow-item">
+                  <div class="step">4</div>
+                  <div>
+                    <strong>Data transfer</strong>
+                    <span>Migrate customer, product, inventory, supplier, and financial data into the new system.</span>
+                  </div>
+                </div>
+                <div class="workflow-item">
+                  <div class="step">5</div>
+                  <div>
+                    <strong>Go-live support</strong>
+                    <span>Train teams and monitor performance across sales, stock, and finance workflows.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta-section" id="contact">
+        <div class="container">
+          <div class="cta-box">
+            <div>
+              <h3>Request a free demo</h3>
+              <p>
+                Let’s turn your jewelry or gold trading business into a fully connected,
+                scalable ERP operation designed around your real processes.
+              </p>
+            </div>
+            <div class="cta-row">
+              <a class="btn primary" href="https://wa.me/201017383815" target="_blank" rel="noreferrer">WhatsApp Demo</a>
+              <a class="btn secondary" href="https://www.gocloudeg.com/index.html" target="_blank" rel="noreferrer">Brand Reference</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-line">
+        <span>Gold ERP Demo • Jewellery & Gold Trading</span>
+        <span>Prepared for presentation and discovery</span>
+      </div>
+    </footer>
+
+    <script>
+      const moduleData = {
+        crm: {
+          title: 'CRM Pipeline',
+          subtitle: 'Track leads from inquiry to negotiation and close.',
+          pill: 'Opportunities',
+          stages: [
+            {
+              name: 'New',
+              value: '32',
+              amount: 'EGP 290K',
+              tone: 'new',
+              deals: [
+                { customer: 'Hassan & Sons', amount: 'EGP 120K' },
+                { customer: 'Leila Fareed', amount: 'EGP 70K' }
+              ]
+            },
+            {
+              name: 'Qualified',
+              value: '18',
+              amount: 'EGP 415K',
+              tone: 'qualified',
+              deals: [
+                { customer: 'Omega Gold', amount: 'EGP 190K' },
+                { customer: 'Amina Jewelry', amount: 'EGP 110K' }
+              ]
+            },
+            {
+              name: 'Proposal',
+              value: '11',
+              amount: 'EGP 330K',
+              tone: 'proposal',
+              deals: [
+                { customer: 'Royal Gems', amount: 'EGP 160K' },
+                { customer: 'Noura Jewels', amount: 'EGP 95K' }
+              ]
+            },
+            {
+              name: 'Negotiation',
+              value: '7',
+              amount: 'EGP 250K',
+              tone: 'negotiation',
+              deals: [
+                { customer: 'Salim Group', amount: 'EGP 130K' },
+                { customer: 'Mira Gold', amount: 'EGP 76K' }
+              ]
+            },
+            {
+              name: 'Won',
+              value: '5',
+              amount: 'EGP 180K',
+              tone: 'won',
+              deals: [
+                { customer: 'Al Zahra', amount: 'EGP 90K' },
+                { customer: 'Gulf Trading', amount: 'EGP 65K' }
+              ]
+            }
+          ],
+          metrics: [
+            { value: '126', label: 'Open leads' },
+            { value: '36', label: 'Active opportunities' },
+            { value: '24%', label: 'Conversion rate' }
+          ]
+        },
+        sales: {
+          title: 'Sales Management',
+          subtitle: 'Daily billing, payment collection, and auto-accounting.',
+          pill: 'POS + Journal Entries',
+          features: [
+            'Register sales invoices immediately and generate automated daily entries.',
+            'Support full and partial payments with flexible settlement methods.',
+            'Track customer receivables, outstanding balances, and daily debt exposure.',
+            'Review sales reports by item, branch, cashier, and sales channel.'
+          ],
+          metrics: [
+            { value: '1,842', label: 'Invoices processed today' },
+            { value: 'EGP 920K', label: 'Cash collection' },
+            { value: '96.4%', label: 'Sales accuracy rate' }
+          ]
+        },
+        purchases: {
+          title: 'Purchases & Cost Control',
+          subtitle: 'Supplier billing workflow and purchasing intelligence.',
+          pill: 'Procurement + Cost Rules',
+          features: [
+            'Create supplier purchase bills and connect them to stock movement entries.',
+            'Maintain cost rules and purchase price updates for gold and jewelry items.',
+            'Track supplier balances, liabilities, and payment status in real time.',
+            'Generate procurement reports by item and supplier with margin visibility.'
+          ],
+          metrics: [
+            { value: '742', label: 'Purchase documents' },
+            { value: 'EGP 680K', label: 'Supplier spend' },
+            { value: '14.8%', label: 'Net margin uplift' }
+          ]
+        },
+        customers: {
+          title: 'Customer Accounts',
+          subtitle: 'Complete customer lifecycle and relationship management.',
+          pill: 'Debt + CRM',
+          features: [
+            'Create customer profiles and track purchase history by account and branch.',
+            'Monitor credit limits, outstanding balances, and payment follow-up actions.',
+            'Analyze customer activity by sales volume, product category, and transaction frequency.',
+            'Build stronger retention through clear purchase and payment visibility.'
+          ],
+          metrics: [
+            { value: '4,108', label: 'Customer records' },
+            { value: 'EGP 430K', label: 'Open receivables' },
+            { value: '82%', label: 'Repeat buyers' }
+          ]
+        },
+        suppliers: {
+          title: 'Supplier Management',
+          subtitle: 'Vendor records, purchasing activity, and payable control.',
+          pill: 'Payables + Reports',
+          features: [
+            'Maintain supplier master data with purchase and payment history.',
+            'Create vendor-linked purchase transactions and follow all financial obligations.',
+            'Know exactly which suppliers are behind and what is due in each period.',
+            'Improve purchasing decisions with supplier performance and price history.'
+          ],
+          metrics: [
+            { value: '391', label: 'Active suppliers' },
+            { value: 'EGP 210K', label: 'Payables due' },
+            { value: '7 days', label: 'Average payment cycle' }
+          ]
+        },
+        inventory: {
+          title: 'Inventory & Gold Items',
+          subtitle: 'Stock master, product categories, and movement control.',
+          pill: 'Warehouse + Stock Control',
+          features: [
+            'Track each item type, category, and valuation model for jewelry and gold inventory.',
+            'Record stock movements, adjustments, and warehouse-level balances with accuracy.',
+            'Support internal transfers, replenishment planning, and product lifecycle tracking.',
+            'Link inventory valuation to cost and price policy for better margin control.'
+          ],
+          metrics: [
+            { value: '18.6K', label: 'Stock records' },
+            { value: '96.8%', label: 'Inventory accuracy' },
+            { value: '43', label: 'Warehouse locations' }
+          ]
+        }
+      };
+
+      const detailTitle = document.getElementById('detail-title');
+      const detailSubtitle = document.getElementById('detail-subtitle');
+      const detailPill = document.getElementById('detail-pill');
+      const featureList = document.getElementById('feature-list');
+      const metricList = document.getElementById('metric-list');
+      const detailGrid = document.querySelector('.detail-grid');
+
+      function renderModule(key) {
+        const data = moduleData[key];
+        detailTitle.textContent = data.title;
+        detailSubtitle.textContent = data.subtitle;
+        detailPill.textContent = data.pill;
+        const isCRM = !!data.stages;
+        detailGrid.classList.toggle('crm-layout', isCRM);
+
+        if (isCRM) {
+          featureList.innerHTML = `
+            <div class="pipeline-grid">
+              <div class="metric-strip">
+                ${data.metrics.map((metric) => `
+                  <div class="metric-box">
+                    <strong>${metric.value}</strong>
+                    <span>${metric.label}</span>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div class="stage-row">
+                ${data.stages.map((stage) => `
+                  <div class="stage-card ${stage.tone}">
+                    <div class="stage-header">
+                      <span class="stage-name">${stage.name}</span>
+                      <span class="stage-value">${stage.value}</span>
+                    </div>
+                    <span class="stage-amount">${stage.amount}</span>
+                    <div class="deal-list">
+                      ${stage.deals.map((deal) => `
+                        <div class="deal-item">
+                          <strong>${deal.customer}</strong>
+                          <span>${deal.amount}</span>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+          metricList.innerHTML = '';
+        } else {
+          featureList.innerHTML = data.features
+            .map((feature) => `<div class="check-item">${feature}</div>`)
+            .join('');
+
+          metricList.innerHTML = data.metrics
+            .map((metric) => `
+              <div class="metric-box">
+                <strong>${metric.value}</strong>
+                <span>${metric.label}</span>
+              </div>
+            `)
+            .join('');
+        }
+      }
+
+      const themeToggle = document.getElementById('themeToggle');
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      const savedTheme = localStorage.getItem('gold-erp-theme');
+      const initialTheme = savedTheme || (prefersLight ? 'light' : 'dark');
+      document.body.setAttribute('data-theme', initialTheme);
+      themeToggle.textContent = initialTheme === 'light' ? '🌙' : '☀️';
+
+      function renderTradingViewWidget() {
+        const widgetContainer = document.getElementById('tradingview-widget');
+        if (!widgetContainer || !window.TradingView) return;
+
+        widgetContainer.innerHTML = '';
+        new window.TradingView.widget({
+          autosize: true,
+          symbol: 'TVC:GOLD',
+          interval: 'D',
+          timezone: 'Etc/UTC',
+          theme: document.body.getAttribute('data-theme') === 'light' ? 'Light' : 'Dark',
+          style: '1',
+          locale: 'en',
+          toolbar_bg: 'rgba(0,0,0,0)',
+          enable_publishing: false,
+          allow_symbol_change: false,
+          container_id: 'tradingview-widget',
+          hide_top_toolbar: false,
+          hide_legend: false,
+          save_image: false,
+          withdateranges: true,
+          hide_volume: false,
+          studies: ['MASimple@tv-basicstudies'],
+          details: true,
+          show_popup_button: true,
+          popup_width: '1000',
+          popup_height: '650'
+        });
+      }
+
+      const marketScript = document.createElement('script');
+      marketScript.src = 'https://s3.tradingview.com/tv.js';
+      marketScript.async = true;
+      marketScript.onload = renderTradingViewWidget;
+      document.body.appendChild(marketScript);
+
+      themeToggle.addEventListener('click', () => {
+        const nextTheme = document.body.getAttribute('data-theme') === 'light' ? 'dark' : 'light';
+        document.body.setAttribute('data-theme', nextTheme);
+        localStorage.setItem('gold-erp-theme', nextTheme);
+        themeToggle.textContent = nextTheme === 'light' ? '🌙' : '☀️';
+
+        if (window.TradingView) {
+          renderTradingViewWidget();
+        }
+      });
+
+      document.querySelectorAll('.tab-btn').forEach((button) => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.tab-btn').forEach((tab) => tab.classList.remove('active'));
+          button.classList.add('active');
+          renderModule(button.dataset.module);
+        });
+      });
+
+      renderModule('crm');
+    </script>
+  </body>
+</html>
