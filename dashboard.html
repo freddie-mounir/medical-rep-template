@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4f7fb">
+  <title>GoCloud Medical CRM | Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="partner-logos.css">
+  <link rel="stylesheet" href="brand-settings.css">
+  <link rel="stylesheet" href="dashboard-enhancements.css">
+  <link rel="icon" id="brandFavicon" href="assets/brand-icon.svg" type="image/svg+xml">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar">
+      <a class="brand" href="index.html" aria-label="Medical CRM home">
+        <span class="brand-mark"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4v24M4 16h24"/><circle cx="16" cy="16" r="11"/></svg></span>
+        <span>Medical CRM<small>FIELD SALES</small></span>
+      </a>
+      <div class="dashboard-company-logos" aria-label="Company websites">
+        <a href="https://www.gocloudeg.com" aria-label="Visit GoCloud website"><img data-brand-logo="gocloud" src="assets/gocloud-logo.jpe" alt="GoCloud"></a>
+        <a href="https://www.egyptomedical.com/" aria-label="Visit EgyptoMedical website"><img data-brand-logo="egyptomedical" src="assets/egyptomedical-logo.png" alt="EgyptoMedical"></a>
+      </div>
+      <div class="workspace-switch">
+        <span class="workspace-avatar">N</span>
+        <span class="workspace-name">EgyptoMedical<small>Medical sales workspace</small></span>
+        <svg class="chevron" viewBox="0 0 16 16" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg>
+      </div>
+      <span class="nav-label">WORKSPACE</span>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#overview" class="nav-item active" data-page="Overview"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="8" rx="2"/><rect x="14" y="3" width="7" height="5" rx="2"/><rect x="14" y="12" width="7" height="9" rx="2"/><rect x="3" y="15" width="7" height="6" rx="2"/></svg>Overview</a>
+        <a href="#visits" class="nav-item" data-page="Visits"><svg viewBox="0 0 24 24"><path d="M8 3v3m8-3v3M4 9h16M6 5h12a2 2 0 0 1 2 2v12H4V7a2 2 0 0 1 2-2Z"/><path d="m9 15 2 2 4-4"/></svg>Field visits<span class="nav-count">12</span></a>
+        <a href="#opportunities" class="nav-item" data-page="Opportunities"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg>Opportunities</a>
+        <a href="#team" class="nav-item" data-page="Team"><svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2m6-10a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm6-7.8a4 4 0 0 1 0 7.6M20 21v-2a4 4 0 0 0-3-3.87"/></svg>Rep team</a>
+        <a href="#samples" class="nav-item" data-page="Samples"><svg viewBox="0 0 24 24"><path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z"/><path d="m4.5 7.7 7.5 4.4 7.5-4.4M12 12v9M8 5.3l8 4.6"/></svg>Samples &amp; gifts</a>
+      </nav>
+      <span class="nav-label tools-label">MANAGEMENT</span>
+      <nav class="main-nav" aria-label="Management navigation">
+        <a href="#attendance" class="nav-item" data-page="Attendance"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Attendance</a>
+        <a href="#territories" class="nav-item" data-page="Territories"><svg viewBox="0 0 24 24"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20V6.5Z"/><path d="M9 4v13.5M15 6.5V20"/></svg>Territories &amp; GPS<span class="status-dot"></span></a>
+        <a href="#reports" class="nav-item" data-page="Reports"><svg viewBox="0 0 24 24"><path d="M4 19V5m0 14h16M8 15l3-4 3 2 5-7"/></svg>Reports</a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="help-card"><span class="help-icon">?</span><strong>Need a hand?</strong><p>Visit the help center for tips and guides.</p><a href="#help">Open help center <span>↗</span></a></div>
+        <a href="#settings" class="nav-item settings-link" data-page="Settings" data-open-brand-settings><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.5.9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.5-.9l-1.7.7L6.3 16l1.4-1.1a8 8 0 0 1 0-1.8L6.3 12l1.4-2.4 1.7.7a8 8 0 0 1 1.5-.9l.3-1.8H14l.3 1.8a8 8 0 0 1 1.5.9l1.7-.7 1.4 2.4-1.4 1.1a8 8 0 0 1-.1 1.9Z"/></svg>Settings</a>
+        <div class="profile">
+          <span class="profile-avatar">FM</span><span class="profile-name">Freddie Mounir<small>Sales manager</small></span>
+          <button class="icon-button profile-menu" aria-label="Profile menu"><svg viewBox="0 0 20 20"><circle cx="4" cy="10" r="1"/><circle cx="10" cy="10" r="1"/><circle cx="16" cy="10" r="1"/></svg></button>
+        </div>
+      </div>
+    </aside>
+
+    <main class="main-content" id="overview">
+      <header class="topbar">
+        <button class="icon-button mobile-menu" id="menuToggle" aria-label="Close sidebar" aria-expanded="true"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+        <div class="breadcrumb">Workspace <span>/</span> <strong>Overview</strong></div>
+        <div class="topbar-actions">
+          <span class="today-label"><span class="live-dot"></span> Wednesday, October 7, 2026</span>
+          <button class="icon-button notification-button" aria-label="Notifications"><svg viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12h4"/></svg><i></i></button>
+          <span class="top-avatar">FM</span>
+        </div>
+      </header>
+
+      <section class="page-wrap">
+        <div class="welcome-row">
+          <div><div class="eyebrow"><span class="eyebrow-line"></span> YOUR FIELD AT A GLANCE <span class="demo-tag">DEMO WORKSPACE</span></div><h1>Good morning, Freddie <span class="wave">✳</span></h1><p class="welcome-copy">Here’s what’s happening across your medical sales team today.</p></div>
+          <div class="welcome-actions"><button class="button button-secondary" id="exportButton"><svg viewBox="0 0 20 20"><path d="M10 3v9m0 0 3-3m-3 3L7 9M4 13v3h12v-3"/></svg>Export report</button><button class="button button-primary" id="newVisitButton"><span>＋</span> Log a visit</button></div>
+        </div>
+
+        <section class="filter-bar" aria-label="Dashboard filters">
+          <div class="filter-heading"><span class="filter-icon"><svg viewBox="0 0 20 20"><path d="M3 5h14M5.5 10h9M8 15h4"/></svg></span><span>Filter by</span></div>
+          <label class="filter-control"><span>DATE RANGE</span><select id="dateFilter"><option value="week">This week</option><option value="month" selected>This month</option><option value="quarter">This quarter</option></select></label>
+          <label class="filter-control"><span>BUSINESS UNIT</span><select id="businessUnitFilter"><option value="all">All business units</option><option value="general">General medicine</option><option value="specialty">Specialty care</option><option value="hospital">Hospital products</option></select></label>
+          <label class="filter-control"><span>BUSINESS LINE</span><select id="businessLineFilter"><option value="all">All business lines</option><option value="prescription">Prescription medicines</option><option value="devices">Medical devices</option><option value="consumer">Consumer health</option></select></label>
+          <label class="filter-control"><span>THERAPEUTIC AREA</span><select id="areaFilter"><option value="all">All areas</option><option value="cardio">Cardiology</option><option value="diabetes">Diabetes care</option><option value="neuro">Neurology</option></select></label>
+          <label class="filter-control"><span>FIELD TEAM</span><select id="teamFilter"><option value="all">All representatives</option><option value="cairo">Cairo team</option><option value="delta">Delta team</option><option value="alex">Alexandria team</option></select></label>
+          <button class="filter-reset" id="resetFilters">Reset filters</button>
+        </section>
+
+        <section class="metric-grid" aria-label="Key metrics">
+          <article class="metric-card metric-card-teal">
+            <div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M8 3v3m8-3v3M4 9h16M6 5h12a2 2 0 0 1 2 2v13H4V7a2 2 0 0 1 2-2Z"/><path d="m9 15 2 2 4-4"/></svg></span><span class="metric-change positive"><span>↗</span> 12.8%</span></div>
+            <div class="metric-value" data-metric="visits">248</div><div class="metric-label">Completed visits</div><div class="metric-foot"><span class="metric-accent"></span><span>vs. previous period</span><span class="foot-total">of 320 target</span></div><div class="progress-track"><span style="width:77.5%"></span></div>
+          </article>
+          <article class="metric-card metric-card-blue">
+            <div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="m7 14 4-4 4 3 6-7"/></svg></span><span class="metric-change positive"><span>↗</span> 8.4%</span></div>
+            <div class="metric-value" data-metric="opportunities">$1.42M</div><div class="metric-label">Open opportunities</div><div class="metric-foot"><span class="metric-accent"></span><span>Across active pipeline</span><span class="foot-total">34 deals</span></div>
+            <div class="sparkline" aria-hidden="true"><svg viewBox="0 0 120 26" preserveAspectRatio="none"><path d="M0 22 C12 19 13 21 23 14 S38 19 48 12 65 15 75 8 91 14 100 5 112 9 120 2" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+          </article>
+          <article class="metric-card metric-card-violet">
+            <div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11Z"/><path d="m9 12 2 2 4-4"/></svg></span><span class="metric-change positive"><span>↗</span> 6.2%</span></div>
+            <div class="metric-value" data-metric="coverage">86%</div><div class="metric-label">Territory coverage</div><div class="metric-foot"><span class="metric-accent"></span><span>18 of 21 districts</span><span class="foot-total">on track</span></div><div class="coverage-dots" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="muted"></i></div>
+          </article>
+          <article class="metric-card metric-card-amber">
+            <div class="metric-top"><span class="metric-icon"><svg viewBox="0 0 24 24"><path d="M20 7 12 3 4 7v10l8 4 8-4V7Z"/><path d="m4.5 7.2 7.5 4.3 7.5-4.3M12 11.5V21"/></svg></span><span class="metric-change neutral"><span>•</span> On plan</span></div>
+            <div class="metric-value" data-metric="samples">1,284</div><div class="metric-label">Samples &amp; gifts given</div><div class="metric-foot"><span class="metric-accent"></span><span>Logged this month</span><span class="foot-total">72% of stock</span></div><div class="progress-track"><span style="width:72%"></span></div>
+          </article>
+        </section>
+
+        <section class="leaderboard-grid" aria-label="Top performance metrics">
+          <article class="panel leaderboard-panel">
+            <div class="panel-heading"><div><h2>Top achievers</h2><p class="panel-subtitle">Representatives leading on visit target achievement</p></div><span class="leaderboard-badge">🏆 TEAM LEADERS</span></div>
+            <div class="leaderboard-list" id="achieverRows" aria-live="polite"></div>
+          </article>
+          <article class="panel leaderboard-panel">
+            <div class="panel-heading"><div><h2>Top areas</h2><p class="panel-subtitle">Therapeutic areas with the most completed visits</p></div><span class="leaderboard-badge area-badge">◎ VISIT MIX</span></div>
+            <div class="leaderboard-list" id="areaRows" aria-live="polite"></div>
+          </article>
+        </section>
+
+        <section class="heatmap-grid" aria-label="Most visited regions in Egypt">
+          <article class="panel heatmap-panel">
+            <div class="panel-heading"><div><h2>Most visited regions</h2><p class="panel-subtitle">Field visits across Egypt · filtered period</p></div><span class="heatmap-legend"><i></i> VISIT INTENSITY</span></div>
+            <div class="heatmap-content">
+              <div class="egypt-map-wrap">
+                <svg class="egypt-map" viewBox="0 0 280 340" role="img" aria-labelledby="egyptMapTitle egyptMapDesc">
+                  <title id="egyptMapTitle">Medical rep visit heatmap of Egypt</title>
+                  <desc id="egyptMapDesc">A stylized map of Egypt showing relative medical representative visit activity by region.</desc>
+                  <defs><clipPath id="egyptShape"><path d="M42 31 218 38 244 57 225 92 235 132 221 166 230 207 213 244 226 293 218 327 117 327 116 282 98 245 89 205 69 168 59 124 47 83Z"/></clipPath></defs>
+                  <path class="map-country" d="M42 31 218 38 244 57 225 92 235 132 221 166 230 207 213 244 226 293 218 327 117 327 116 282 98 245 89 205 69 168 59 124 47 83Z"/>
+                  <g clip-path="url(#egyptShape)">
+                    <rect class="map-region-fill region-west" x="35" y="28" width="86" height="81"/>
+                    <rect class="map-region-fill region-north" x="120" y="28" width="133" height="75"/>
+                    <rect class="map-region-fill region-cairo" x="112" y="105" width="100" height="69"/>
+                    <rect class="map-region-fill region-canal" x="208" y="95" width="47" height="98"/>
+                    <rect class="map-region-fill region-upper" x="91" y="176" width="137" height="176"/>
+                    <path class="map-border" d="M40 100 218 102M68 169 231 169M89 238 222 238M111 285 225 285M122 31 118 105M208 101 207 169"/>
+                    <path class="map-nile" d="M143 37c-5 40 14 51 2 77s12 36 3 61 9 37 3 57 7 45 2 90"/>
+                    <circle class="map-heat" data-heat-region="cairo" cx="145" cy="105" r="31"><title>Greater Cairo: highest activity</title></circle>
+                    <circle class="map-heat" data-heat-region="alex" cx="123" cy="79" r="23"><title>Alexandria and North Coast</title></circle>
+                    <circle class="map-heat" data-heat-region="delta" cx="163" cy="76" r="22"><title>Delta region</title></circle>
+                    <circle class="map-heat" data-heat-region="canal" cx="208" cy="137" r="21"><title>Canal and Suez region</title></circle>
+                    <circle class="map-heat" data-heat-region="upper" cx="151" cy="220" r="19"><title>Upper Egypt</title></circle>
+                    <circle class="map-heat" data-heat-region="redsea" cx="200" cy="234" r="15"><title>Red Sea region</title></circle>
+                  </g>
+                  <path class="map-outline" d="M42 31 218 38 244 57 225 92 235 132 221 166 230 207 213 244 226 293 218 327 117 327 116 282 98 245 89 205 69 168 59 124 47 83Z"/>
+                  <g class="map-city" data-region="cairo" tabindex="0" role="button" aria-label="Greater Cairo region: 82 visits"><circle cx="145" cy="105" r="5"/><text x="153" y="108">Cairo</text></g>
+                  <g class="map-city" data-region="alex" tabindex="0" role="button" aria-label="Alexandria and North Coast region: 46 visits"><circle cx="83" cy="67" r="4"/><text x="52" y="57">Alexandria</text></g>
+                  <g class="map-city" data-region="delta" tabindex="0" role="button" aria-label="Delta region: 42 visits"><circle cx="174" cy="76" r="4"/><text x="181" y="79">Delta</text></g>
+                  <g class="map-city" data-region="canal" tabindex="0" role="button" aria-label="Canal and Suez region: 29 visits"><circle cx="211" cy="135" r="4"/><text x="216" y="139">Suez</text></g>
+                  <g class="map-city" data-region="upper" tabindex="0" role="button" aria-label="Upper Egypt region: 31 visits"><circle cx="151" cy="220" r="4"/><text x="158" y="223">Upper Egypt</text></g>
+                  <g class="map-city" data-region="redsea" tabindex="0" role="button" aria-label="Red Sea region: 18 visits"><circle cx="204" cy="252" r="4"/><text x="209" y="256">Red Sea</text></g>
+                </svg>
+                <div class="map-scale"><span>LOW</span><i></i><i></i><i></i><i></i><span>HIGH</span></div>
+              </div>
+              <div class="region-rankings" id="regionRows" aria-live="polite"></div>
+            </div>
+          </article>
+        </section>
+
+        <section class="analytics-grid">
+          <article class="panel activity-panel" id="visits">
+            <div class="panel-heading"><div><div class="panel-title-row"><h2>Field activity</h2><span class="live-pill"><i></i> LIVE</span></div><p class="panel-subtitle">Visits completed across your team</p></div>
+              <div class="segmented-control" role="group" aria-label="Chart time range"><button class="segment" data-range="7">7 days</button><button class="segment active" data-range="14">14 days</button><button class="segment" data-range="30">30 days</button></div>
+            </div>
+            <div class="chart-summary"><strong id="chartTotal">248</strong><span>visits this month</span><span class="chart-legend"><i></i> Visits <i class="legend-target"></i> Daily target</span></div>
+            <div class="chart-wrap"><div class="y-labels"><span>40</span><span>30</span><span>20</span><span>10</span><span>0</span></div><div class="chart-main"><div class="chart-gridlines"><i></i><i></i><i></i><i></i><i></i></div><svg id="activityChart" role="img" aria-label="Bar chart of daily completed visits" viewBox="0 0 700 188" preserveAspectRatio="none"></svg><div class="x-labels" id="chartLabels"></div></div></div>
+            <div class="chart-foot"><span><i class="foot-dot"></i>Daily average <strong id="dailyAverage">11.8</strong> visits</span><span>Target <strong>12 visits</strong> / rep / day</span></div>
+          </article>
+
+          <article class="panel pipeline-panel" id="opportunities">
+            <div class="panel-heading"><div><h2>Opportunity pipeline</h2><p class="panel-subtitle">34 opportunities · $1.42M total</p></div><button class="more-button" aria-label="Pipeline options">···</button></div>
+            <div class="pipeline-total"><span>Weighted forecast</span><strong>$684,200</strong><span class="forecast-change">↗ 9.3% <small>vs. last month</small></span></div>
+            <div class="pipeline-stages">
+              <div class="stage-row"><div class="stage-label"><span>Qualified</span><span>$482k <small>12 deals</small></span></div><div class="stage-track"><i class="stage-qualified" style="width:88%"></i></div></div>
+              <div class="stage-row"><div class="stage-label"><span>Needs analysis</span><span>$356k <small>9 deals</small></span></div><div class="stage-track"><i class="stage-analysis" style="width:69%"></i></div></div>
+              <div class="stage-row"><div class="stage-label"><span>Proposal</span><span>$324k <small>7 deals</small></span></div><div class="stage-track"><i class="stage-proposal" style="width:58%"></i></div></div>
+              <div class="stage-row"><div class="stage-label"><span>Negotiation</span><span>$258k <small>6 deals</small></span></div><div class="stage-track"><i class="stage-negotiation" style="width:43%"></i></div></div>
+            </div>
+            <a class="panel-link" href="#opportunities">View all opportunities <span>→</span></a>
+          </article>
+        </section>
+
+        <section class="bottom-grid">
+          <article class="panel visits-panel">
+            <div class="panel-heading"><div><h2>Recent field visits</h2><p class="panel-subtitle">Your team’s latest customer interactions</p></div><a class="text-link" href="#visits">All visits <span>→</span></a></div>
+            <div class="table-scroll"><table><thead><tr><th>REPRESENTATIVE</th><th>HEALTHCARE PROFESSIONAL</th><th>LOCATION</th><th>TIME</th><th>STATUS</th></tr></thead>
+              <tbody id="visitRows">
+                <tr><td><span class="rep-cell"><span class="rep-avatar avatar-peach">SM</span><span>Sarah Mansour<small>Cairo team</small></span></span></td><td>Dr. Amr Hassan<small>Cardiology</small></td><td><span class="location-cell"><svg viewBox="0 0 16 16"><path d="M13 6.5c0 4-5 8-5 8s-5-4-5-8a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6.5" r="1.5"/></svg>Maadi, Cairo</span></td><td>10:42 AM</td><td><span class="status-tag status-verified"><i></i>Verified</span></td></tr>
+                <tr><td><span class="rep-cell"><span class="rep-avatar avatar-blue">YK</span><span>Youssef Khalil<small>Alexandria team</small></span></span></td><td>Dr. Dina Fawzy<small>Diabetes care</small></td><td><span class="location-cell"><svg viewBox="0 0 16 16"><path d="M13 6.5c0 4-5 8-5 8s-5-4-5-8a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6.5" r="1.5"/></svg>Smouha, Alexandria</span></td><td>10:18 AM</td><td><span class="status-tag status-verified"><i></i>Verified</span></td></tr>
+                <tr><td><span class="rep-cell"><span class="rep-avatar avatar-lilac">NF</span><span>Nour Farouk<small>Delta team</small></span></span></td><td>Dr. Karim Saeed<small>Neurology</small></td><td><span class="location-cell"><svg viewBox="0 0 16 16"><path d="M13 6.5c0 4-5 8-5 8s-5-4-5-8a5 5 0 1 1 10 0Z"/><circle cx="8" cy="6.5" r="1.5"/></svg>Mansoura, Dakahlia</span></td><td>9:56 AM</td><td><span class="status-tag status-verified"><i></i>Verified</span></td></tr>
+              </tbody>
+            </table></div>
+          </article>
+          <article class="panel team-panel" id="team">
+            <div class="panel-heading"><div><h2>Team pulse</h2><p class="panel-subtitle">Today’s attendance &amp; activity</p></div><a class="text-link" href="#team">See team <span>→</span></a></div>
+            <div class="team-summary"><div><strong>18</strong><span>Checked in</span></div><div><strong>3</strong><span>Not started</span></div><div><strong>2</strong><span>On leave</span></div></div>
+            <div class="team-list">
+              <div class="team-person"><span class="rep-avatar avatar-peach">SM</span><span class="person-name">Sarah Mansour<small>Cairo · Cardiology</small></span><span class="person-activity">6 visits</span><i class="presence online"></i></div>
+              <div class="team-person"><span class="rep-avatar avatar-blue">YK</span><span class="person-name">Youssef Khalil<small>Alexandria · Diabetes</small></span><span class="person-activity">4 visits</span><i class="presence online"></i></div>
+              <div class="team-person"><span class="rep-avatar avatar-lilac">NF</span><span class="person-name">Nour Farouk<small>Delta · Neurology</small></span><span class="person-activity">3 visits</span><i class="presence online"></i></div>
+            </div>
+          </article>
+        </section>
+        <footer class="page-footer"><span>© 2026 Medical Sales CRM <span class="footer-dot">·</span> Built for better field days.</span><span><i class="footer-status"></i> All systems operational <span class="footer-dot">·</span> GPS geofencing active</span></footer>
+      </section>
+    </main>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <div class="modal-backdrop" id="visitModal" aria-hidden="true">
+    <section class="visit-modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close icon-button" id="closeModal" aria-label="Close">×</button>
+      <span class="modal-symbol"><svg viewBox="0 0 24 24"><path d="M8 3v3m8-3v3M4 9h16M6 5h12a2 2 0 0 1 2 2v13H4V7a2 2 0 0 1 2-2Z"/><path d="M12 12v6m-3-3h6"/></svg></span>
+      <h2 id="modalTitle">Log a field visit</h2><p>Capture a customer interaction for your team.</p>
+      <form id="visitForm">
+        <label>Healthcare professional<input name="hcp" required placeholder="e.g. Dr. Amr Hassan"></label>
+        <div class="modal-form-row"><label>Therapeutic area<select name="area"><option>Cardiology</option><option>Diabetes care</option><option>Neurology</option></select></label><label>Location<input name="location" required placeholder="City or district"></label></div>
+        <label>Visit notes<textarea name="notes" rows="3" placeholder="Key discussion points, samples provided…"></textarea></label>
+        <div class="geofence-notice"><span>◎</span><span><strong>GPS geofencing enabled</strong><small>Visit location will be verified when logged.</small></span><i class="presence online"></i></div>
+        <button class="button button-primary submit-visit" type="submit">Save visit <span>→</span></button>
+      </form>
+    </section>
+  </div>
+  <script src="brand-settings.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoCloud - نظام إدارة صيانة ومعارض السيارات</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Cairo', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#1e3a8a',     /* Primary Dark Blue */
+                            blueDark: '#1e3a8a', /* Darker Blue for footer/hero */
+                            green: '#84cc16',    /* Accent Green */
+                            greenLight: '#bef264',
+                            light: '#f8fafc',
+                            white: '#ffffff'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="antialiased font-sans bg-brand-white text-gray-800 selection:bg-brand-green selection:text-white">
+
+    <!-- Header / Navbar -->
+    <header class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo with Fallback -->
+                <div class="flex items-center">
+                    <a href="https://www.gocloudeg.com/" aria-label="GoCloud - الموقع الرسمي">
+                        <img src="assets/gocloud-logo.jpe" alt="GoCloud Logo" class="h-16 object-contain"
+                             onerror="this.style.display='none'; document.getElementById('logo-fallback-nav').style.display='block';">
+
+                        <!-- Fallback Text Logo (Shows if image fails to load) -->
+                        <div id="logo-fallback-nav" style="display:none;" class="text-3xl font-black text-brand-blue tracking-tighter">
+                            Go<span class="text-brand-green">Cloud</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8 space-x-reverse">
+                    <a href="#hero" class="text-brand-blue hover:text-brand-green transition-colors font-bold text-lg">الرئيسية</a>
+                    <a href="#features" class="text-gray-600 hover:text-brand-green transition-colors font-bold text-lg">المميزات</a>
+                    <a href="#partners" class="text-gray-600 hover:text-brand-green transition-colors font-bold text-lg">شركاء النجاح</a>
+                    <a href="#footer" class="text-gray-600 hover:text-brand-green transition-colors font-bold text-lg">تواصل معنا</a>
+                </div>
+
+                <!-- CTA -->
+                <div class="hidden md:flex">
+                    <a href="https://www.gocloudeg.com/contact.html" class="bg-brand-green hover:bg-lime-600 text-white font-bold py-2.5 px-6 rounded-lg shadow-lg shadow-brand-green/30 transition-all transform hover:-translate-y-0.5">
+                        اطلب نسختك
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero" class="pt-32 pb-20 lg:pt-40 lg:pb-28 bg-brand-blue relative overflow-hidden">
+        <!-- Background Decoration -->
+        <div class="absolute top-[-10%] right-[-5%] w-96 h-96 bg-brand-green/20 blur-[100px] rounded-full pointer-events-none"></div>
+        <div class="absolute bottom-[-10%] left-[-5%] w-96 h-96 bg-blue-500/20 blur-[100px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+                
+                <!-- Text Content -->
+                <div class="w-full lg:w-1/2 flex flex-col justify-center text-center lg:text-right">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-brand-green/50 bg-brand-green/10 text-brand-greenLight text-sm font-bold mb-6 mx-auto lg:mx-0 w-fit">
+                        <i class="fa-solid fa-rocket"></i>
+                        <span>نظام (AMS) المتطور</span>
+                    </div>
+                    
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
+                        نظام الإدارة الشامل لـ<br/>
+                        <span class="text-brand-green">معارض وصيانة السيارات</span>
+                    </h1>
+                    
+                    <p class="text-lg text-blue-100 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
+                        منصة سحابية متكاملة تمنحك تحكماً تاماً في مراكز الصيانة، إدارة المعارض، تتبع المشتريات وقطع الغيار، ومراقبة دقيقة للنظام المالي والمحاسبي.
+                    </p>
+                    
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                        <a href="#features" class="bg-brand-green hover:bg-lime-600 text-white font-bold py-3.5 px-8 rounded-lg shadow-lg shadow-brand-green/20 transition-all text-center text-lg">
+                            استكشف النظام
+                        </a>
+                        <a href="#footer" class="bg-transparent border-2 border-white/30 hover:border-white text-white font-bold py-3.5 px-8 rounded-lg transition-all text-center text-lg">
+                            تواصل مع المبيعات
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Visual Mockup -->
+                <div class="w-full lg:w-1/2">
+                    <div class="bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-100 transform rotate-1 hover:rotate-0 transition-transform duration-500">
+                        <!-- Browser Header -->
+                        <div class="bg-gray-100 px-4 py-3 flex items-center gap-2 border-b border-gray-200">
+                            <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                            <div class="w-3 h-3 rounded-full bg-brand-green"></div>
+                        </div>
+                        <!-- Mockup Content -->
+                        <div class="p-6 bg-brand-light">
+                            <div class="flex justify-between items-center mb-6">
+                                <h3 class="font-bold text-brand-blue text-lg">لوحة التحكم والمؤشرات</h3>
+                                <i class="fa-solid fa-chart-pie text-brand-green text-2xl"></i>
+                            </div>
+                            
+                            <div class="grid grid-cols-2 gap-4 mb-6">
+                                <div class="bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                                    <p class="text-gray-500 text-sm mb-1 font-semibold">أوامر التشغيل</p>
+                                    <p class="text-brand-blue font-black text-2xl">142</p>
+                                </div>
+                                <div class="bg-brand-blue rounded-xl p-4 shadow-sm text-white">
+                                    <p class="text-blue-200 text-sm mb-1 font-semibold">إجمالي المبيعات</p>
+                                    <p class="font-black text-2xl text-brand-greenLight">85,400</p>
+                                </div>
+                            </div>
+
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="w-10 h-10 rounded bg-brand-green/10 flex items-center justify-center text-brand-green"><i class="fa-solid fa-car"></i></div>
+                                    <div class="flex-1">
+                                        <div class="h-2 bg-gray-200 rounded w-3/4 mb-2"></div>
+                                        <div class="h-2 bg-gray-100 rounded w-1/2"></div>
+                                    </div>
+                                </div>
+                                <div class="flex items-center gap-3 bg-white p-3 rounded-lg shadow-sm">
+                                    <div class="w-10 h-10 rounded bg-brand-blue/10 flex items-center justify-center text-brand-blue"><i class="fa-solid fa-wrench"></i></div>
+                                    <div class="flex-1">
+                                        <div class="h-2 bg-gray-200 rounded w-full mb-2"></div>
+                                        <div class="h-2 bg-gray-100 rounded w-2/3"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Grid Section -->
+    <section id="features" class="py-20 bg-brand-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-brand-blue mb-4">الخدمات والمميزات الأساسية</h2>
+                <div class="w-24 h-1.5 bg-brand-green mx-auto rounded-full"></div>
+                <p class="mt-4 text-gray-600 text-lg max-w-2xl mx-auto">كل ما تحتاجه لإدارة أعمالك بكفاءة عالية في منصة واحدة متكاملة.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Feature 1 -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl hover:border-brand-green/30 transition-all group">
+                    <div class="w-16 h-16 bg-brand-light rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white text-brand-blue transition-colors shadow-sm">
+                        <i class="fa-solid fa-clipboard-check text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-3">فحص السيارة</h3>
+                    <p class="text-gray-600 leading-relaxed font-medium">
+                        إصدار تقرير مبدئي عن حالة السيارة، إنشاء كارت دخول للسيارة موضحاً فيه القطع والخدمات المطلوبة.
+                    </p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl hover:border-brand-green/30 transition-all group">
+                    <div class="w-16 h-16 bg-brand-light rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white text-brand-blue transition-colors shadow-sm">
+                        <i class="fa-solid fa-screwdriver-wrench text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-3">أوامر التشغيل (Work Orders)</h3>
+                    <p class="text-gray-600 leading-relaxed font-medium">
+                        إصدار أمر تشغيل مفصل، وتوضيح الخدمات والمتطلبات سواء من داخل المركز أو خارجه مع تحديد الفني المختص.
+                    </p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl hover:border-brand-green/30 transition-all group">
+                    <div class="w-16 h-16 bg-brand-light rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white text-brand-blue transition-colors shadow-sm">
+                        <i class="fa-solid fa-building text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-3">إدارة المعارض</h3>
+                    <p class="text-gray-600 leading-relaxed font-medium">
+                        نظام متكامل لإدارة معارض السيارات وصالات العرض، تتبع المخزون، وحركة السيارات بين الفروع وتسهيل المبيعات.
+                    </p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl hover:border-brand-green/30 transition-all group">
+                    <div class="w-16 h-16 bg-brand-light rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white text-brand-blue transition-colors shadow-sm">
+                        <i class="fa-solid fa-boxes-stacked text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-3">إدارة قطع الغيار والمشتريات</h3>
+                    <p class="text-gray-600 leading-relaxed font-medium">
+                        إدارة المخازن والمشتريات، إضافة فواتير الموردين، متابعة حركة المخزون، واستلام رسائل تنبيهية للنواقص.
+                    </p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl hover:border-brand-green/30 transition-all group">
+                    <div class="w-16 h-16 bg-brand-light rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white text-brand-blue transition-colors shadow-sm">
+                        <i class="fa-solid fa-calculator text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-3">الإدارة المالية والمحاسبة</h3>
+                    <p class="text-gray-600 leading-relaxed font-medium">
+                        إدارة كافة حسابات المركز، إصدار الفواتير، حساب الدخل والمصروفات بدقة، وحساب صافي الأرباح.
+                    </p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl hover:border-brand-green/30 transition-all group">
+                    <div class="w-16 h-16 bg-brand-light rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white text-brand-blue transition-colors shadow-sm">
+                        <i class="fa-solid fa-file-invoice text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-3">عروض الأسعار والفواتير</h3>
+                    <p class="text-gray-600 leading-relaxed font-medium">
+                        إنشاء عروض أسعار لصيانة السيارات، إصدار فاتورة المبيعات وربطها بشكل تلقائي مع أمر التشغيل.
+                    </p>
+                </div>
+
+                <!-- Feature 7 -->
+                <div class="bg-white p-8 rounded-2xl border border-gray-100 shadow-lg hover:shadow-xl hover:border-brand-green/30 transition-all group">
+                    <div class="w-16 h-16 bg-brand-light rounded-xl flex items-center justify-center mb-6 group-hover:bg-brand-green group-hover:text-white text-brand-blue transition-colors shadow-sm">
+                        <i class="fa-solid fa-soap text-2xl"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-brand-blue mb-3">إدارة مغاسل السيارات</h3>
+                    <p class="text-gray-600 leading-relaxed font-medium">
+                        تنظيم استقبال السيارات والدور ومتابعة مراحل الغسيل، مع إدارة باقات التنظيف والخدمات الإضافية وإصدار الفواتير ومتابعة الإيرادات.
+                    </p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <!-- <section id="partners" class="py-16 bg-brand-light border-y border-gray-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl font-black text-brand-blue mb-10">مراكز وشركات تثق بنا</h2>
+            
+            <div class="flex flex-wrap justify-center gap-6 lg:gap-10 items-center">
+                <div class="px-8 py-4 bg-white rounded-xl shadow-sm border border-gray-100 font-bold text-xl text-gray-700 hover:text-brand-green hover:border-brand-green transition-colors">HEMCO</div>
+                <div class="px-8 py-4 bg-white rounded-xl shadow-sm border border-gray-100 font-bold text-xl text-gray-700 hover:text-brand-blue hover:border-brand-blue transition-colors">AutoMoto Services</div>
+                <div class="px-8 py-4 bg-white rounded-xl shadow-sm border border-gray-100 font-bold text-xl text-gray-700 hover:text-brand-green hover:border-brand-green transition-colors">MotorBay</div>
+                <div class="px-8 py-4 bg-white rounded-xl shadow-sm border border-gray-100 font-bold text-xl text-gray-700 hover:text-brand-blue hover:border-brand-blue transition-colors">مركز المصطفى</div>
+                <div class="px-8 py-4 bg-white rounded-xl shadow-sm border border-gray-100 font-bold text-xl text-gray-700 hover:text-brand-green hover:border-brand-green transition-colors">العالمية Auto Services</div>
+                <div class="px-8 py-4 bg-white rounded-xl shadow-sm border border-gray-100 font-bold text-xl text-gray-700 hover:text-brand-blue hover:border-brand-blue transition-colors">Smart Car</div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-brand-blue pt-16 pb-8 border-t-[6px] border-brand-green">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12 border-b border-blue-800 pb-12">
+                
+                <!-- Column 1: Brand & Logo -->
+                <div class="flex flex-col items-start text-right">
+                    <!-- Footer Logo -->
+                    <div class="bg-white p-2 rounded-lg mb-6">
+                        <a href="https://www.gocloudeg.com/" aria-label="GoCloud - الموقع الرسمي">
+                            <img src="assets/gocloud-logo.jpe" alt="GoCloud Logo" class="h-10 object-contain"
+                                 onerror="this.style.display='none'; document.getElementById('logo-fallback-footer').style.display='block';">
+
+                            <!-- Fallback Text Logo for Footer -->
+                            <div id="logo-fallback-footer" style="display:none;" class="text-2xl font-black text-brand-blue tracking-tighter">
+                                Go<span class="text-brand-green">Cloud</span>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <p class="text-blue-100 text-base leading-relaxed mb-6 font-medium">
+                        Smart Software Solutions
+                        <br><br>
+                        نحن نقدم حلولاً سحابية ذكية ومبتكرة لإدارة مراكز صيانة السيارات ومعارض بيع السيارات وأنظمة تخطيط الموارد (ERP).
+                    </p>
+                </div>
+
+                <!-- Column 2: Quick Links -->
+                <div class="flex flex-col text-right">
+                    <h4 class="text-white font-bold text-xl mb-6">روابط سريعة</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#hero" class="text-blue-200 hover:text-brand-greenLight transition-colors font-semibold"><i class="fa-solid fa-angle-left ml-2 text-brand-green"></i>الرئيسية</a></li>
+                        <li><a href="#features" class="text-blue-200 hover:text-brand-greenLight transition-colors font-semibold"><i class="fa-solid fa-angle-left ml-2 text-brand-green"></i>الخدمات والمميزات</a></li>
+                        <li><a href="#partners" class="text-blue-200 hover:text-brand-greenLight transition-colors font-semibold"><i class="fa-solid fa-angle-left ml-2 text-brand-green"></i>شركاء النجاح</a></li>
+                        <li><a href="https://www.gocloudeg.com/privacy.html" class="text-blue-200 hover:text-brand-greenLight transition-colors font-semibold"><i class="fa-solid fa-angle-left ml-2 text-brand-green"></i>سياسة الخصوصية</a></li>
+                        <li><a href="https://www.gocloudeg.com/" class="text-blue-200 hover:text-brand-greenLight transition-colors font-semibold"><i class="fa-solid fa-angle-left ml-2 text-brand-green"></i>الموقع الرسمي</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Contact Info -->
+                <div class="flex flex-col text-right">
+                    <h4 class="text-white font-bold text-xl mb-6">تواصل معنا</h4>
+                    <ul class="space-y-5 text-blue-200 font-semibold">
+                        <li class="flex items-start gap-4 hover:text-white transition-colors cursor-default">
+                            <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-location-dot text-brand-greenLight"></i>
+                            </div>
+                            <span class="mt-2">القاهرة، جمهورية مصر العربية</span>
+                        </li>
+                        <li class="flex items-center gap-4 hover:text-white transition-colors">
+                            <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-envelope text-brand-greenLight"></i>
+                            </div>
+                            <a href="mailto:info@gocloud.com" dir="ltr" class="hover:underline">info@gocloud.com</a>
+                        </li>
+                        <li class="flex items-center gap-4 hover:text-white transition-colors">
+                            <div class="w-10 h-10 rounded-full bg-blue-800 flex items-center justify-center shrink-0">
+                                <i class="fa-solid fa-phone text-brand-greenLight"></i>
+                            </div>
+                            <a href="tel:+201222666635" dir="ltr" class="hover:underline">+201222666635</a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Copyright -->
+            <div class="text-center text-blue-300 text-sm font-semibold flex flex-col md:flex-row justify-between items-center gap-4">
+                <div>جميع الحقوق محفوظة &copy; 2026 <span class="text-brand-greenLight font-bold">GoCloud</span>.</div>
+                <div class="flex gap-4 text-xl">
+                    <a href="https://www.facebook.com/GoCloudEg/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" class="hover:text-brand-green transition-colors"><i class="fa-brands fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/gocloud_eg/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="hover:text-brand-green transition-colors"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.linkedin.com/company/gocloud-co" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="hover:text-brand-green transition-colors"><i class="fa-brands fa-linkedin"></i></a>
+                </div>
+            </div>
+
+        </div>
+    </footer>
+
+</body>
+</html>
